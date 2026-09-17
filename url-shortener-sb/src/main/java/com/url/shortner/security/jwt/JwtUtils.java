@@ -17,10 +17,10 @@ public class JwtUtils {
 
     // Authorization header -> Bearer <TOKEN>
 
-    @Value("${jwt.secret}")
+    @Value("${jwt.secret:dGhpc0lzQVZlcnlTZWN1cmVOYW5vVVJMSldUU2VjcmV0S2V5MjAyNiE=}")
     private String jwtSecret;
 
-    @Value("${jwt.expiration}")
+    @Value("${jwt.expiration:172800000}")
     private int jwtExpirationMs;
 
     public String getJwtFromHeader(HttpServletRequest request) {
