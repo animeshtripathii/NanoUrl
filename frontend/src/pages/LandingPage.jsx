@@ -36,11 +36,11 @@ export default function LandingPage() {
           <div className="z-10 flex flex-col items-center max-w-3xl w-full">
             <div className="inline-flex items-center gap-2 px-md py-xs rounded-full bg-white/5 border border-white/15 backdrop-blur-md mb-lg">
               <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-              <span className="font-code-sm text-code-sm text-zinc-300">LinkEngine Routing Active</span>
+              <span className="font-code-sm text-code-sm text-zinc-300">NanoURL Routing Active</span>
             </div>
 
             <h1 className="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-md tracking-tight">
-              LINKENGINE — <br className="md:hidden" />Shorten. Share. Track.
+              NANOURL — <br className="md:hidden" />Shorten. Share. Track.
             </h1>
 
             <p className="font-body-lg text-body-lg text-zinc-400 mb-xl max-w-2xl font-normal leading-relaxed">
@@ -82,7 +82,7 @@ export default function LandingPage() {
                   <div className="w-16 h-16 rounded-2xl bg-white/10 border border-white/30 flex items-center justify-center text-white shadow-lg shadow-white/10 backdrop-blur-md">
                     <BrandLogo className="w-8 h-8 text-white" />
                   </div>
-                  <span className="font-code-sm text-[10px] text-white font-bold uppercase tracking-widest">LinkEngine</span>
+                  <span className="font-code-sm text-[10px] text-white font-bold uppercase tracking-widest">NanoURL</span>
                 </div>
                 <div className="flex-grow h-[2px] bg-gradient-to-r from-white/10 via-white to-white/10 mx-md relative">
                   <div className="absolute top-1/2 right-0 -translate-y-1/2 w-2 h-2 rounded-full bg-white animate-pulse"></div>
@@ -103,9 +103,9 @@ export default function LandingPage() {
         <section id="about" className="py-2xl border-b border-white/10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
             <div className="space-y-md text-left">
-              <h2 className="font-headline-md text-headline-md text-white font-bold">How LinkEngine Works</h2>
+              <h2 className="font-headline-md text-headline-md text-white font-bold">How NanoURL Works</h2>
               <p className="font-body-md text-body-md text-zinc-400 leading-relaxed">
-                LinkEngine is built for modern developer workflows. When a client accesses a shortened URL, our gateway resolves the hash using MySQL indexes in under 2ms, logs telemetry click metadata, and sends an HTTP 302 redirect.
+                NanoURL is built for modern developer workflows. When a client accesses a shortened URL, our gateway resolves the hash using database indexes in under 2ms, logs telemetry click metadata, and sends an HTTP 302 redirect.
               </p>
               <ul className="space-y-sm font-code-sm text-code-sm text-zinc-300">
                 <li className="flex items-center gap-3">
@@ -227,9 +227,9 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="backdrop-blur-md bg-zinc-950/80 border-t border-white/10 w-full py-xl px-lg flex flex-col md:flex-row justify-between items-center max-w-container-max mx-auto">
         <div className="flex items-center gap-2 mb-md md:mb-0">
-          <span className="font-headline-sm text-headline-sm text-white font-bold">LinkEngine</span>
+          <span className="font-headline-sm text-headline-sm text-white font-bold">NanoURL</span>
           <span className="font-body-sm text-body-sm text-zinc-400 ml-4">
-            © 2026 LinkEngine Inc. All rights reserved.
+            © 2026 NanoURL Inc. All rights reserved.
           </span>
         </div>
         <div className="flex gap-md font-body-sm text-body-sm text-zinc-400">

@@ -1,19 +1,19 @@
-# LinkEngine 🔗 (NanoUrl)
+# NanoURL 🔗
 
 <div align="center">
 
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon_DB-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-6.x-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-Authentication-000000?style=for-the-badge&logo=json-web-tokens&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 ![Render](https://img.shields.io/badge/Deploy-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
 
-**A full-stack, enterprise-ready URL shortener and click analytics platform built with Spring Boot, React, and MySQL.**
+**A high-contrast, glassmorphic full-stack URL shortener & click analytics platform powered by Spring Boot, React, and Neon DB (Free Serverless PostgreSQL).**
 
-[Key Features](#-key-features) • [Tech Stack](#-tech-stack) • [Cloud Deployment](#-cloud-deployment) • [Local Setup](#-local-setup) • [API Documentation](#-api-documentation)
+[Key Features](#-key-features) • [Tech Stack](#-tech-stack) • [Neon DB Setup](#-neon-db-postgresql-setup) • [Cloud Deployment](#-cloud-deployment) • [API Documentation](#-api-documentation)
 
 </div>
 
@@ -21,7 +21,7 @@
 
 ## 📌 Overview
 
-**LinkEngine** is a modern, high-performance link management application. It enables users to convert long, cumbersome web addresses into clean, branded short links, manage user-specific link portfolios, track real-time click statistics, and visualize temporal performance metrics through interactive analytics dashboards.
+**NanoURL** is a high-performance link management platform. It enables users to convert long web addresses into clean short links, track real-time click statistics with interactive Chart.js graphs, and manage link portfolios with a dark glassmorphic UI.
 
 ---
 
@@ -31,8 +31,9 @@
 - ⚡ **URL Shortening**: Rapid generation of unique, collision-free short codes mapped to original URLs.
 - 🔀 **Instant Redirection**: High-throughput short link redirection with real-time click event recording.
 - 📊 **Interactive Analytics**: Visual click tracking powered by `Chart.js` and custom date-range filtering.
-- 📂 **Personal Link Dashboard**: Full management suite for logged-in users to search, filter, copy, and audit active links.
-- 🌐 **Cloud-Ready Architecture**: Configured out-of-the-box for **Vercel** (Frontend) and **Render** (Backend).
+- 🐘 **Neon DB Powered**: Native serverless PostgreSQL integration (Neon DB Free Tier).
+- 🎨 **Sleek Black & White Glassmorphic UI**: Premium high-contrast dark theme with frosted glass effects.
+- 🌐 **Cloud Ready**: Pre-configured for **Vercel** (Frontend) and **Render** (Backend).
 
 ---
 
@@ -40,118 +41,57 @@
 
 ### Frontend
 - **Framework**: React 19 + Vite
-- **Styling**: Tailwind CSS + Custom Dark Theme Design System
+- **Styling**: Tailwind CSS + Custom Black & White Glassmorphism Design System
 - **Charts**: Chart.js & React-Chartjs-2
 - **Routing**: React Router DOM v7
-- **Icons**: Google Material Symbols & Lucide Icons
+- **Icons**: Google Material Symbols
 
 ### Backend
 - **Framework**: Java 21 + Spring Boot 3
 - **Security**: Spring Security + JWT (`jjwt-api`)
 - **Persistence**: Spring Data JPA + Hibernate
-- **Database**: MySQL 8+
+- **Database**: Neon DB (Serverless PostgreSQL) / MySQL
 - **Build Tool**: Apache Maven
 
 ---
 
-## 🏗️ Architecture & Data Flow
+## 🐘 Neon DB (PostgreSQL) Setup
 
-```text
-┌─────────────────────────┐          ┌───────────────────────────┐
-│     React Frontend      │          │    Spring Boot Backend    │
-│  (Deployed on Vercel)   │          │   (Deployed on Render)    │
-│                         │          │                           │
-│   - Landing & Auth UI   │  HTTP/   │   - JWT Auth Controllers  │
-│   - Link Manager        │  JSON    │   - URL Shortener Service │
-│   - Analytics Charts    │ ───────► │   - Click Track Filter    │
-└─────────────────────────┘          └─────────────┬─────────────┘
-                                                   │ JPA/Hibernate
-                                                   ▼
-                                     ┌───────────────────────────┐
-                                     │      MySQL Database       │
-                                     │                           │
-                                     │   - Users Table           │
-                                     │   - URL Mappings Table    │
-                                     │   - Click Events Table    │
-                                     └───────────────────────────┘
-```
+NanoURL is configured out-of-the-box to use **[Neon.tech](https://neon.tech/)** (Free Serverless PostgreSQL):
+
+1. Sign up for a free account at **[Neon.tech](https://neon.tech/)** and create a new project (e.g. `nanourl-db`).
+2. Copy your **PostgreSQL Connection String** from the Neon Dashboard:
+   ```text
+   postgres://alex:Password123@ep-cool-mountain-12345.us-east-2.aws.neon.tech/neondb?sslmode=require
+   ```
+3. Convert it to JDBC format for Spring Boot:
+   ```text
+   jdbc:postgresql://ep-cool-mountain-12345.us-east-2.aws.neon.tech/neondb?sslmode=require
+   ```
+4. Set the following environment variables on your deployment host (Render / Local):
+   - `SPRING_DATASOURCE_URL` = `jdbc:postgresql://ep-cool-mountain-12345.us-east-2.aws.neon.tech/neondb?sslmode=require`
+   - `SPRING_DATASOURCE_USERNAME` = `alex`
+   - `SPRING_DATASOURCE_PASSWORD` = `Password123`
 
 ---
 
-## ☁️ Cloud Deployment
+## ☁️ Cloud Deployment Guide
 
-### 1. Deploying Frontend to Vercel
+### 1. Backend on Render (Spring Boot)
+1. Create a Web Service on **Render** using the Docker runtime (`url-shortener-sb/Dockerfile`).
+2. Add Environment Variables:
+   - `SPRING_DATASOURCE_URL`: Your Neon DB JDBC URL.
+   - `SPRING_DATASOURCE_USERNAME`: Your Neon DB user.
+   - `SPRING_DATASOURCE_PASSWORD`: Your Neon DB password.
+   - `JWT_SECRET`: Base64 secret key (minimum 32 bytes).
+3. Copy your live backend service URL (e.g., `https://nanourl-api.onrender.com`).
 
-The frontend includes a pre-configured `vercel.json` for SPA route rewrites.
-
-1. Push code to GitHub and connect your repo to **Vercel**.
+### 2. Frontend on Vercel (React)
+1. Import repository on **Vercel**.
 2. Set **Root Directory** to `frontend`.
 3. Add Environment Variable:
-   ```env
-   VITE_API_BASE_URL=https://your-backend-url.onrender.com
-   ```
+   - `VITE_API_BASE_URL` = `https://nanourl-api.onrender.com`
 4. Click **Deploy**.
-
----
-
-### 2. Deploying Backend to Render
-
-The repository includes a production multi-stage `Dockerfile` and `render.yaml` blueprint.
-
-1. Create a Web Service on **Render** using the Docker runtime (points to `url-shortener-sb/Dockerfile`).
-2. Add the following Environment Variables in Render:
-   - `SPRING_DATASOURCE_URL` = `jdbc:mysql://<host>:<port>/<dbname>`
-   - `SPRING_DATASOURCE_USERNAME` = `<your-db-username>`
-   - `SPRING_DATASOURCE_PASSWORD` = `<your-db-password>`
-   - `JWT_SECRET` = `<min-32-byte-base64-secret>`
-3. Click **Deploy**.
-
----
-
-## ⚙️ Local Setup
-
-### Prerequisites
-- **Java 21+**
-- **Node.js 18+ & npm**
-- **MySQL 8+**
-
----
-
-### 1. Backend Setup
-
-```bash
-# Navigate to backend
-cd url-shortener-sb
-
-# Create MySQL database
-mysql -u root -p -e "CREATE DATABASE linkengine;"
-
-# Copy environment properties template
-cp src/main/resources/application.properties.example src/main/resources/application.properties
-
-# Run application
-./mvnw spring-boot:run   # Linux/macOS
-.\mvnw.cmd spring-boot:run  # Windows
-```
-
-The Spring Boot backend will run on `http://localhost:8080`.
-
----
-
-### 2. Frontend Setup
-
-```bash
-# Navigate to frontend
-cd frontend
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-The React frontend will run on `http://localhost:5173`.
 
 ---
 
@@ -181,26 +121,16 @@ Content-Type: application/json
   "password": "Password@123"
 }
 ```
-*Returns JWT access token.*
 
 ---
 
-### Protected URL Endpoints (`Authorization: Bearer <TOKEN>`)
+### Protected Endpoints (`Authorization: Bearer <TOKEN>`)
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `POST` | `/api/urls/shorten` | Create short code for a long URL |
-| `GET` | `/api/urls/myurls` | Fetch all URLs created by logged-in user |
-| `GET` | `/api/urls/analytics/{shortUrl}` | Get click events between `startDate` and `endDate` |
-
----
-
-### Public Redirection
-
-```http
-GET /{shortUrl}
-```
-Redirects to original destination and records click telemetry.
+| `POST` | `/api/urls/shorten` | Create short code for long URL |
+| `GET` | `/api/urls/myurls` | Fetch URLs belonging to logged-in user |
+| `GET` | `/api/urls/analytics/{shortUrl}` | Get click analytics data |
 
 ---
 

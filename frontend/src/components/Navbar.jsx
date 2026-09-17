@@ -19,7 +19,7 @@ export default function Navbar() {
               <BrandLogo className="w-6 h-6" />
             </div>
             <span className="font-headline-md text-headline-md font-bold text-white tracking-tight">
-              LinkEngine
+              NanoURL
             </span>
           </Link>
         </div>

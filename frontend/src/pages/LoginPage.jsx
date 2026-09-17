@@ -95,7 +95,7 @@ export default function LoginPage() {
               <span className="material-symbols-outlined text-[26px] text-white">link</span>
             </div>
             <div className="text-center">
-              <h1 className="text-[21px] font-bold text-white tracking-tight">Sign in to LinkEngine</h1>
+              <h1 className="text-[21px] font-bold text-white tracking-tight">Sign in to NanoURL</h1>
               <p className="text-[13px] text-zinc-400 mt-1">Manage and track your links in one place</p>
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="user@linkengine.io"
+                  placeholder="user@nanourl.io"
                   className="w-full glass-input rounded-xl pl-10 pr-4 py-3 text-[13px] text-white placeholder-zinc-500 transition-all border border-white/15 focus:border-white focus:ring-1 focus:ring-white"
                   required
                   autoComplete="email"
@@ -200,7 +200,7 @@ export default function LoginPage() {
           {/* Bottom strip */}
           <div className="px-8 py-3.5 bg-black/60 border-t border-white/10 flex items-center justify-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-            <span className="text-[11px] text-zinc-400 font-mono tracking-widest">LINKENGINE · SECURE</span>
+            <span className="text-[11px] text-zinc-400 font-mono tracking-widest">NANOURL · SECURE</span>
           </div>
         </div>
       </main>

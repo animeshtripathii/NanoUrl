@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: linkengine-backend
+    name: nanourl-backend
     env: docker
     dockerfilePath: ./url-shortener-sb/Dockerfile
     dockerContext: ./url-shortener-sb

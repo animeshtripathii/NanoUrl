@@ -82,7 +82,7 @@ export default function RegisterPage() {
               <div className="p-2 rounded-xl bg-white/10 border border-white/20">
                 <span className="material-symbols-outlined text-[28px] text-white">link</span>
               </div>
-              <h1 className="font-headline-md text-headline-md text-white font-bold">LinkEngine</h1>
+              <h1 className="font-headline-md text-headline-md text-white font-bold">NanoURL</h1>
             </div>
             <p className="font-body-md text-body-md text-zinc-400">Create your account</p>
           </div>
