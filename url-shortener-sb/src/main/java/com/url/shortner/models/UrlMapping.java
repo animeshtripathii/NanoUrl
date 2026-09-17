@@ -7,11 +7,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "url_mapping")
 @Data
 public class UrlMapping {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String originalUrl;

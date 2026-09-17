@@ -4,16 +4,18 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+
 @Entity
+@Table(name = "click_event")
 @Data
 public class ClickEvent {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDateTime clickDate;
 
     @ManyToOne
-    @JoinColumn(name = "url_mapping_id") //foreign key column
+    @JoinColumn(name = "url_mapping_id")
     private UrlMapping urlMapping;
 }
