@@ -10,12 +10,14 @@ export default function Navbar() {
   const isLinkActive = (path) => location.pathname === path;
 
   return (
-    <nav className="bg-base border-b border-border-subtle w-full px-lg py-md sticky top-0 z-50 backdrop-blur-md bg-[#0B0B0B]/90">
+    <nav className="glass-navbar w-full px-lg py-md sticky top-0 z-50">
       <div className="max-w-container-max mx-auto flex justify-between items-center w-full">
         {/* Brand Logo and Name */}
         <div className="flex items-center gap-md">
-          <Link to="/" className="flex items-center gap-sm">
-            <BrandLogo className="w-8 h-8" />
+          <Link to="/" className="flex items-center gap-sm group">
+            <div className="p-1.5 rounded-lg bg-white/5 border border-white/10 group-hover:border-white/30 transition-all duration-300">
+              <BrandLogo className="w-6 h-6" />
+            </div>
             <span className="font-headline-md text-headline-md font-bold text-white tracking-tight">
               LinkEngine
             </span>
@@ -26,8 +28,10 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-lg">
           <Link
             to="/"
-            className={`font-label-caps text-label-caps transition-colors ${
-              isLinkActive('/') ? 'text-[#FF6B2C]' : 'text-on-surface-variant hover:text-[#FF6B2C]'
+            className={`font-label-caps text-label-caps transition-all ${
+              isLinkActive('/') 
+                ? 'text-white font-bold border-b-2 border-white pb-0.5' 
+                : 'text-zinc-400 hover:text-white'
             }`}
           >
             Home
@@ -36,7 +40,7 @@ export default function Navbar() {
           {!isAuthenticated ? (
             <a
               href="#about"
-              className="font-label-caps text-label-caps text-on-surface-variant hover:text-[#FF6B2C] transition-colors"
+              className="font-label-caps text-label-caps text-zinc-400 hover:text-white transition-colors"
             >
               About
             </a>
@@ -44,32 +48,40 @@ export default function Navbar() {
             <>
               <Link
                 to="/dashboard"
-                className={`font-label-caps text-label-caps transition-colors ${
-                  isLinkActive('/dashboard') ? 'text-[#FF6B2C]' : 'text-on-surface-variant hover:text-[#FF6B2C]'
+                className={`font-label-caps text-label-caps transition-all ${
+                  isLinkActive('/dashboard') 
+                    ? 'text-white font-bold border-b-2 border-white pb-0.5' 
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 Dashboard
               </Link>
               <Link
                 to="/my-links"
-                className={`font-label-caps text-label-caps transition-colors ${
-                  isLinkActive('/my-links') ? 'text-[#FF6B2C]' : 'text-on-surface-variant hover:text-[#FF6B2C]'
+                className={`font-label-caps text-label-caps transition-all ${
+                  isLinkActive('/my-links') 
+                    ? 'text-white font-bold border-b-2 border-white pb-0.5' 
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 My Links
               </Link>
               <Link
                 to="/analytics"
-                className={`font-label-caps text-label-caps transition-colors ${
-                  isLinkActive('/analytics') ? 'text-[#FF6B2C]' : 'text-on-surface-variant hover:text-[#FF6B2C]'
+                className={`font-label-caps text-label-caps transition-all ${
+                  isLinkActive('/analytics') 
+                    ? 'text-white font-bold border-b-2 border-white pb-0.5' 
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 Analytics
               </Link>
               <Link
                 to="/settings"
-                className={`font-label-caps text-label-caps transition-colors ${
-                  isLinkActive('/settings') ? 'text-[#FF6B2C]' : 'text-on-surface-variant hover:text-[#FF6B2C]'
+                className={`font-label-caps text-label-caps transition-all ${
+                  isLinkActive('/settings') 
+                    ? 'text-white font-bold border-b-2 border-white pb-0.5' 
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 Settings
@@ -83,13 +95,13 @@ export default function Navbar() {
           {isAuthenticated ? (
             <div className="flex items-center gap-md">
               {/* User Profile display */}
-              <div className="flex items-center gap-xs px-sm py-xs bg-surface-level-2 border border-border-subtle rounded font-code-sm text-code-sm text-on-surface-variant">
-                <span className="material-symbols-outlined text-sm">person</span>
+              <div className="flex items-center gap-xs px-md py-xs bg-white/5 border border-white/10 rounded-full font-code-sm text-code-sm text-zinc-300 backdrop-blur-md">
+                <span className="material-symbols-outlined text-sm text-white">person</span>
                 <span>{user?.sub || user?.username || 'user'}</span>
               </div>
               <button
                 onClick={logout}
-                className="btn-secondary px-md py-sm rounded text-body-sm font-label-caps transition-colors"
+                className="btn-secondary px-md py-sm rounded-lg text-body-sm font-label-caps"
               >
                 Logout
               </button>
@@ -98,13 +110,13 @@ export default function Navbar() {
             <>
               <Link
                 to="/login"
-                className="btn-secondary px-md py-sm rounded text-body-sm font-label-caps transition-colors hidden md:block"
+                className="btn-secondary px-md py-sm rounded-lg text-body-sm font-label-caps hidden md:block"
               >
                 Login
               </Link>
               <Link
                 to="/register"
-                className="btn-primary px-md py-sm rounded text-body-sm font-label-caps transition-colors"
+                className="btn-primary px-md py-sm rounded-lg text-body-sm font-label-caps shadow-[0_0_15px_rgba(255,255,255,0.2)]"
               >
                 Get Started
               </Link>

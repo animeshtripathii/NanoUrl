@@ -3,7 +3,7 @@ import React from 'react';
 export default function BrandLogo({ className = "w-8 h-8" }) {
   return (
     <svg 
-      className={`${className} text-[#FF6B2C]`} 
+      className={`${className} text-white`} 
       viewBox="0 0 24 24" 
       fill="none" 
       stroke="currentColor" 

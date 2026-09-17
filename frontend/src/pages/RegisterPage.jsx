@@ -57,14 +57,17 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col antialiased bg-[#0B0B0B] text-on-surface">
-      <main className="flex-grow flex items-center justify-center p-md md:p-lg relative overflow-hidden">
-        {/* Background Tech Accent */}
-        <div className="absolute inset-0 pointer-events-none opacity-20 flex items-center justify-center">
+    <div className="min-h-screen flex flex-col antialiased bg-black text-white relative overflow-hidden">
+      {/* Background Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-white/5 blur-[120px] pointer-events-none" />
+
+      <main className="flex-grow flex items-center justify-center p-md md:p-lg relative overflow-hidden z-10">
+        {/* Background Grid */}
+        <div className="absolute inset-0 pointer-events-none opacity-15">
           <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <pattern height="40" id="grid" patternUnits="userSpaceOnUse" width="40">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#292929" strokeWidth="1"></path>
+                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#333" strokeWidth="0.8"></path>
               </pattern>
             </defs>
             <rect fill="url(#grid)" height="100%" width="100%"></rect>
@@ -72,26 +75,28 @@ export default function RegisterPage() {
         </div>
 
         {/* Registration Card */}
-        <div className="card-surface w-full max-w-[480px] p-lg rounded flex flex-col gap-lg relative z-10 shadow-[0_20px_40px_rgba(0,0,0,0.5)]">
+        <div className="glass-panel w-full max-w-[480px] p-lg rounded-2xl flex flex-col gap-lg relative z-10 shadow-[0_32px_64px_rgba(0,0,0,0.8)] border border-white/15">
           {/* Header */}
-          <div className="flex flex-col items-center gap-sm border-b border-[#292929] pb-md">
-            <div className="flex items-center gap-sm text-primary-container">
-              <span className="material-symbols-outlined text-[32px] text-accent-primary">link</span>
-              <h1 className="font-headline-md text-headline-md text-on-background">LinkEngine</h1>
+          <div className="flex flex-col items-center gap-sm border-b border-white/10 pb-md">
+            <div className="flex items-center gap-sm">
+              <div className="p-2 rounded-xl bg-white/10 border border-white/20">
+                <span className="material-symbols-outlined text-[28px] text-white">link</span>
+              </div>
+              <h1 className="font-headline-md text-headline-md text-white font-bold">LinkEngine</h1>
             </div>
-            <p className="font-body-md text-body-md text-on-surface-variant">Create your account</p>
+            <p className="font-body-md text-body-md text-zinc-400">Create your account</p>
           </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-md">
             {errorMsg && (
-              <div className="p-md rounded bg-[#ffb4ab]/10 border border-[#ffb4ab]/30 text-[#ffb4ab] text-body-sm">
+              <div className="p-md rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-body-sm">
                 {errorMsg}
               </div>
             )}
 
             <div className="flex flex-col gap-xs">
-              <label className="font-label-caps text-label-caps text-on-surface-variant" htmlFor="username">
+              <label className="font-label-caps text-label-caps text-zinc-400" htmlFor="username">
                 Username
               </label>
               <input
@@ -99,14 +104,14 @@ export default function RegisterPage() {
                 type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="Harmeet"
-                className="input-tech rounded p-sm font-code-sm text-code-sm"
+                placeholder="User"
+                className="glass-input rounded-xl p-sm font-code-sm text-code-sm border border-white/15 focus:border-white"
                 required
               />
             </div>
 
             <div className="flex flex-col gap-xs">
-              <label className="font-label-caps text-label-caps text-on-surface-variant" htmlFor="email">
+              <label className="font-label-caps text-label-caps text-zinc-400" htmlFor="email">
                 Email
               </label>
               <input
@@ -114,14 +119,14 @@ export default function RegisterPage() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="harmeet@email.com"
-                className="input-tech rounded p-sm font-code-sm text-code-sm"
+                placeholder="user@example.com"
+                className="glass-input rounded-xl p-sm font-code-sm text-code-sm border border-white/15 focus:border-white"
                 required
               />
             </div>
 
             <div className="flex flex-col gap-xs">
-              <label className="font-label-caps text-label-caps text-on-surface-variant" htmlFor="password">
+              <label className="font-label-caps text-label-caps text-zinc-400" htmlFor="password">
                 Password
               </label>
               <input
@@ -130,13 +135,13 @@ export default function RegisterPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                className="input-tech rounded p-sm font-code-sm text-code-sm"
+                className="glass-input rounded-xl p-sm font-code-sm text-code-sm border border-white/15 focus:border-white"
                 required
               />
             </div>
 
             <div className="flex flex-col gap-xs">
-              <label className="font-label-caps text-label-caps text-on-surface-variant" htmlFor="confirm_password">
+              <label className="font-label-caps text-label-caps text-zinc-400" htmlFor="confirm_password">
                 Confirm Password
               </label>
               <input
@@ -145,7 +150,7 @@ export default function RegisterPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
-                className="input-tech rounded p-sm font-code-sm text-code-sm"
+                className="glass-input rounded-xl p-sm font-code-sm text-code-sm border border-white/15 focus:border-white"
                 required
               />
             </div>
@@ -154,13 +159,13 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="btn-primary rounded p-sm font-label-caps text-label-caps w-full hover:opacity-90 transition-opacity py-md flex items-center justify-center gap-sm"
+                className="btn-primary rounded-xl p-sm font-label-caps text-label-caps w-full py-md flex items-center justify-center gap-sm shadow-[0_0_20px_rgba(255,255,255,0.2)]"
               >
                 <span>{loading ? 'Registering...' : 'Create Account'}</span>
               </button>
               <Link
                 to="/login"
-                className="btn-secondary rounded p-sm font-label-caps text-label-caps w-full text-center hover:bg-[#1E1E1E] transition-colors py-md"
+                className="btn-secondary rounded-xl p-sm font-label-caps text-label-caps w-full text-center py-md"
               >
                 Already have an account? Login
               </Link>
@@ -168,9 +173,9 @@ export default function RegisterPage() {
           </form>
 
           {/* Footer Accents */}
-          <div className="pt-md border-t border-[#292929] flex justify-between items-center opacity-50">
-            <span className="font-code-sm text-code-sm text-on-surface-variant">v.2.4.1</span>
-            <span className="font-code-sm text-code-sm text-on-surface-variant">Secure Connection</span>
+          <div className="pt-md border-t border-white/10 flex justify-between items-center opacity-60">
+            <span className="font-code-sm text-code-sm text-zinc-400">v.2.4.1</span>
+            <span className="font-code-sm text-code-sm text-zinc-400">Secure Connection</span>
           </div>
         </div>
       </main>

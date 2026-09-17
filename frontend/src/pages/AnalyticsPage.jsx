@@ -124,7 +124,6 @@ export default function AnalyticsPage() {
       d.setDate(d.getDate() - i);
       const dateStr = d.toISOString().split('T')[0]; // YYYY-MM-DD
       
-      // Formatting label for display: e.g. "Mon" or "Oct 24"
       let displayLabel = d.toLocaleDateString('en-US', { weekday: 'short' });
       if (daysCount > 7) {
         displayLabel = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
@@ -132,15 +131,12 @@ export default function AnalyticsPage() {
       
       labels.push(displayLabel);
 
-      // Find match in analyticsData
       const match = analyticsData.find((item) => {
-        // clickDate might be YYYY-MM-DD array or string
         if (Array.isArray(item.clickDate)) {
           const [y, m, day] = item.clickDate;
           const pad = (n) => String(n).padStart(2, '0');
           return `${y}-${pad(m)}-${pad(day)}` === dateStr;
         }
-        // string check
         return item.clickDate === dateStr;
       });
 
@@ -166,11 +162,11 @@ export default function AnalyticsPage() {
       {
         label: 'Clicks',
         data: chartDataPoints,
-        borderColor: '#FF6B2C',
-        backgroundColor: 'rgba(255, 107, 44, 0.1)',
-        borderWidth: 2,
-        pointBackgroundColor: '#151515',
-        pointBorderColor: '#FF6B2C',
+        borderColor: '#FFFFFF',
+        backgroundColor: 'rgba(255, 255, 255, 0.08)',
+        borderWidth: 2.5,
+        pointBackgroundColor: '#000000',
+        pointBorderColor: '#FFFFFF',
         pointBorderWidth: 2,
         pointRadius: 4,
         pointHoverRadius: 6,
@@ -188,10 +184,10 @@ export default function AnalyticsPage() {
         display: false,
       },
       tooltip: {
-        backgroundColor: '#1E1E1E',
-        titleColor: '#f7ddd5',
-        bodyColor: '#f7ddd5',
-        borderColor: '#333333',
+        backgroundColor: 'rgba(9, 9, 11, 0.95)',
+        titleColor: '#ffffff',
+        bodyColor: '#ffffff',
+        borderColor: 'rgba(255, 255, 255, 0.2)',
         borderWidth: 1,
         padding: 12,
         displayColors: false,
@@ -212,7 +208,7 @@ export default function AnalyticsPage() {
           display: false,
         },
         ticks: {
-          color: '#e2bfb3',
+          color: '#a1a1aa',
           font: {
             family: 'JetBrains Mono',
             size: 10,
@@ -221,10 +217,10 @@ export default function AnalyticsPage() {
       },
       y: {
         grid: {
-          color: '#292929',
+          color: 'rgba(255, 255, 255, 0.08)',
         },
         ticks: {
-          color: '#e2bfb3',
+          color: '#a1a1aa',
           font: {
             family: 'JetBrains Mono',
             size: 10,
@@ -246,12 +242,12 @@ export default function AnalyticsPage() {
   return (
     <Layout>
       {/* Header */}
-      <header className="sticky top-0 z-30 bg-[#0B0B0B]/80 backdrop-blur-md border-b border-[#292929] pb-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md mb-lg">
+      <header className="sticky top-0 z-30 backdrop-blur-md bg-black/70 border-b border-white/10 pb-md flex flex-col sm:flex-row justify-between items-start sm:items-center gap-md mb-lg">
         <div>
-          <h2 className="font-headline-md text-headline-md text-on-surface">Analytics Overview</h2>
+          <h2 className="font-headline-md text-headline-md text-white font-bold">Analytics Overview</h2>
           {selectedShortUrl && (
-            <p className="font-code-sm text-code-sm text-accent-primary mt-1">
-              Active Link: {BASE_URL}/{selectedShortUrl}
+            <p className="font-code-sm text-code-sm text-zinc-300 mt-1">
+              Active Link: <span className="text-white font-bold">{BASE_URL}/{selectedShortUrl}</span>
             </p>
           )}
         </div>
@@ -263,10 +259,10 @@ export default function AnalyticsPage() {
                 setSelectedShortUrl(e.target.value);
                 setSearchParams({ shortUrl: e.target.value });
               }}
-              className="input-field rounded font-code-sm text-code-sm text-on-surface px-md py-sm flex-grow sm:flex-grow-0 min-w-[160px]"
+              className="glass-input rounded-xl font-code-sm text-code-sm text-white px-md py-sm flex-grow sm:flex-grow-0 min-w-[160px] border border-white/15 focus:border-white"
             >
               {links.map((link) => (
-                <option key={link.id} value={link.shortURl}>
+                <option key={link.id} value={link.shortURl} className="bg-zinc-950 text-white">
                   {link.shortURl}
                 </option>
               ))}
@@ -275,11 +271,11 @@ export default function AnalyticsPage() {
           <select
             value={period}
             onChange={(e) => setPeriod(e.target.value)}
-            className="input-field rounded font-code-sm text-code-sm text-on-surface px-md py-sm"
+            className="glass-input rounded-xl font-code-sm text-code-sm text-white px-md py-sm border border-white/15 focus:border-white"
           >
-            <option value="7">Last 7 Days</option>
-            <option value="30">Last 30 Days</option>
-            <option value="365">This Year</option>
+            <option value="7" className="bg-zinc-950 text-white">Last 7 Days</option>
+            <option value="30" className="bg-zinc-950 text-white">Last 30 Days</option>
+            <option value="365" className="bg-zinc-950 text-white">This Year</option>
           </select>
         </div>
       </header>
@@ -287,57 +283,63 @@ export default function AnalyticsPage() {
       <div className="space-y-2xl">
         {/* Metrics Row */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-lg">
-          <div className="surface-card p-md rounded-lg flex flex-col gap-sm bg-level-1">
+          <div className="glass-card p-md rounded-2xl flex flex-col gap-sm">
             <div className="flex justify-between items-start">
-              <span className="font-label-caps text-label-caps text-on-surface-variant">Selected Link Clicks (All Time)</span>
-              <span className="material-symbols-outlined text-primary text-accent-primary">touch_app</span>
+              <span className="font-label-caps text-label-caps text-zinc-400">Selected Link Clicks (All Time)</span>
+              <div className="p-2 rounded-lg bg-white/10 text-white border border-white/10">
+                <span className="material-symbols-outlined">touch_app</span>
+              </div>
             </div>
-            <div className="font-headline-md text-headline-md text-on-surface">
+            <div className="font-headline-md text-headline-md text-white font-bold">
               {selectedShortUrl ? selectedLinkTotalClicks : 0}
             </div>
-            <div className="font-code-sm text-code-sm text-on-surface-variant">
+            <div className="font-code-sm text-code-sm text-zinc-400">
               Created on: {selectedLinkCreatedDate}
             </div>
           </div>
 
-          <div className="surface-card p-md rounded-lg flex flex-col gap-sm bg-level-1">
+          <div className="glass-card p-md rounded-2xl flex flex-col gap-sm">
             <div className="flex justify-between items-start">
-              <span className="font-label-caps text-label-caps text-on-surface-variant">Total Account Links</span>
-              <span className="material-symbols-outlined text-primary text-accent-primary">link</span>
+              <span className="font-label-caps text-label-caps text-zinc-400">Total Account Links</span>
+              <div className="p-2 rounded-lg bg-white/10 text-white border border-white/10">
+                <span className="material-symbols-outlined">link</span>
+              </div>
             </div>
-            <div className="font-headline-md text-headline-md text-on-surface">{totalLinksCount}</div>
-            <div className="font-code-sm text-code-sm text-secondary">
+            <div className="font-headline-md text-headline-md text-white font-bold">{totalLinksCount}</div>
+            <div className="font-code-sm text-code-sm text-zinc-400">
               Across user account
             </div>
           </div>
 
-          <div className="surface-card p-md rounded-lg flex flex-col gap-sm bg-level-1">
+          <div className="glass-card p-md rounded-2xl flex flex-col gap-sm">
             <div className="flex justify-between items-start">
-              <span className="font-label-caps text-label-caps text-on-surface-variant">Account Avg. Clicks/Link</span>
-              <span className="material-symbols-outlined text-primary text-accent-primary">bar_chart</span>
+              <span className="font-label-caps text-label-caps text-zinc-400">Account Avg. Clicks/Link</span>
+              <div className="p-2 rounded-lg bg-white/10 text-white border border-white/10">
+                <span className="material-symbols-outlined">bar_chart</span>
+              </div>
             </div>
-            <div className="font-headline-md text-headline-md text-on-surface">{avgClicksCount}</div>
-            <div className="font-code-sm text-code-sm text-tertiary">
+            <div className="font-headline-md text-headline-md text-white font-bold">{avgClicksCount}</div>
+            <div className="font-code-sm text-code-sm text-zinc-400">
               Aggregate performance
             </div>
           </div>
         </section>
 
         {/* Chart Section */}
-        <section className="surface-card rounded-lg flex flex-col bg-level-1">
-          <div className="border-b border-[#292929] px-lg py-md flex justify-between items-center bg-level-2">
-            <h3 className="font-headline-sm text-headline-sm text-on-surface">
-              Clicks in Period: <span className="text-accent-primary">{totalClicksSelected}</span>
+        <section className="glass-panel rounded-2xl flex flex-col border border-white/10 overflow-hidden">
+          <div className="border-b border-white/10 px-lg py-md flex justify-between items-center bg-white/5">
+            <h3 className="font-headline-sm text-headline-sm text-white font-bold">
+              Clicks in Period: <span className="text-white underline">{totalClicksSelected}</span>
             </h3>
           </div>
           <div className="p-lg h-96 w-full relative">
             {loading ? (
-              <div className="absolute inset-0 flex items-center justify-center bg-[#151515]/80 text-on-surface-variant">
+              <div className="absolute inset-0 flex items-center justify-center bg-black/80 text-zinc-300">
                 <span className="material-symbols-outlined animate-spin text-[32px] mr-2">progress_activity</span>
                 Loading chart data...
               </div>
             ) : !selectedShortUrl ? (
-              <div className="absolute inset-0 flex items-center justify-center text-on-surface-variant font-code-sm">
+              <div className="absolute inset-0 flex items-center justify-center text-zinc-400 font-code-sm">
                 No short URL selected. Create a link to view analytics.
               </div>
             ) : (
@@ -347,24 +349,24 @@ export default function AnalyticsPage() {
         </section>
 
         {/* Data Table Section */}
-        <section className="surface-card rounded-lg overflow-hidden flex flex-col bg-level-1">
-          <div className="border-b border-[#292929] px-lg py-md flex justify-between items-center bg-level-2">
-            <h3 className="font-headline-sm text-headline-sm text-on-surface">Link Performance</h3>
+        <section className="glass-panel rounded-2xl overflow-hidden flex flex-col border border-white/10">
+          <div className="border-b border-white/10 px-lg py-md flex justify-between items-center bg-white/5">
+            <h3 className="font-headline-sm text-headline-sm text-white font-bold">Link Performance</h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse">
               <thead>
-                <tr className="border-b border-[#292929] font-label-caps text-label-caps text-on-surface-variant">
+                <tr className="border-b border-white/10 font-label-caps text-label-caps text-zinc-400">
                   <th className="py-md px-lg font-normal">Short URL</th>
                   <th className="py-md px-lg font-normal">Original URL</th>
                   <th className="py-md px-lg font-normal text-right">Total Clicks</th>
                   <th className="py-md px-lg font-normal text-center">Status</th>
                 </tr>
               </thead>
-              <tbody className="font-code-md text-code-md text-on-surface">
+              <tbody className="font-code-md text-code-md text-white">
                 {links.length === 0 ? (
                   <tr>
-                    <td colSpan="4" className="py-md px-lg text-center text-on-surface-variant">
+                    <td colSpan="4" className="py-md px-lg text-center text-zinc-400">
                       No links shortened yet.
                     </td>
                   </tr>
@@ -376,17 +378,17 @@ export default function AnalyticsPage() {
                         setSelectedShortUrl(link.shortURl);
                         setSearchParams({ shortUrl: link.shortURl });
                       }}
-                      className={`border-b border-[#292929] hover:bg-surface-container-lowest transition-colors cursor-pointer ${
-                        selectedShortUrl === link.shortURl ? 'bg-surface-container-lowest border-l-2 border-[#FF6B2C]' : ''
+                      className={`border-b border-white/5 hover:bg-white/5 transition-colors cursor-pointer ${
+                        selectedShortUrl === link.shortURl ? 'bg-white/10 border-l-4 border-white' : ''
                       }`}
                     >
-                      <td className="py-md px-lg text-primary text-[#FF6B2C]">{link.shortURl}</td>
-                      <td className="py-md px-lg text-on-surface-variant truncate max-w-xs" title={link.orignalUrl}>
+                      <td className="py-md px-lg text-white font-bold">{link.shortURl}</td>
+                      <td className="py-md px-lg text-zinc-300 truncate max-w-xs" title={link.orignalUrl}>
                         {link.orignalUrl}
                       </td>
-                      <td className="py-md px-lg text-right">{link.clickCount || 0}</td>
+                      <td className="py-md px-lg text-right font-bold">{link.clickCount || 0}</td>
                       <td className="py-md px-lg text-center">
-                        <span className="inline-block px-sm py-xs rounded bg-tertiary/10 border border-tertiary text-tertiary font-code-sm text-code-sm">
+                        <span className="inline-block px-sm py-xs rounded-md bg-white/10 border border-white/20 text-white font-code-sm text-code-sm">
                           Active
                         </span>
                       </td>

@@ -15,12 +15,12 @@ export default function Toast({ show, message, description, type = 'success', on
   const isSuccess = type === 'success';
 
   return (
-    <div className="fixed bottom-lg right-lg bg-[#1E1E1E] border border-border-subtle rounded-lg p-md flex items-center space-x-md shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-50 min-w-[280px]">
+    <div className="fixed bottom-lg right-lg backdrop-blur-xl bg-zinc-950/80 border border-white/20 rounded-xl p-md flex items-center space-x-md shadow-[0_10px_40px_rgba(0,0,0,0.8)] z-50 min-w-[300px] transition-all animate-fade-in">
       <div
         className={`w-8 h-8 rounded-full flex items-center justify-center border ${
           isSuccess
-            ? 'bg-[#FF6B2C]/10 border-[#FF6B2C] text-[#FF6B2C]'
-            : 'bg-[#ffb4ab]/10 border-[#ffb4ab] text-[#ffb4ab]'
+            ? 'bg-white/10 border-white text-white'
+            : 'bg-red-500/10 border-red-400 text-red-400'
         }`}
       >
         <span className="material-symbols-outlined text-[16px]">
@@ -28,12 +28,12 @@ export default function Toast({ show, message, description, type = 'success', on
         </span>
       </div>
       <div className="flex-1">
-        <p className="font-body-sm text-body-sm text-on-surface font-medium">{message}</p>
+        <p className="font-body-sm text-body-sm text-white font-semibold">{message}</p>
         {description && (
-          <p className="font-code-sm text-code-sm text-on-surface-variant">{description}</p>
+          <p className="font-code-sm text-code-sm text-zinc-400 mt-0.5">{description}</p>
         )}
       </div>
-      <button onClick={onClose} className="text-on-surface-variant hover:text-white flex items-center">
+      <button onClick={onClose} className="text-zinc-400 hover:text-white flex items-center transition-colors">
         <span className="material-symbols-outlined text-[16px]">close</span>
       </button>
     </div>
