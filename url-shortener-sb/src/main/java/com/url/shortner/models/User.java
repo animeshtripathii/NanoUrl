@@ -1,0 +1,17 @@
+package com.url.shortner.models;
+
+import jakarta.persistence.*;
+import lombok.Data;
+@Entity
+@Table(name = "users")
+@Data
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String email;
+    private String username;
+    private String password;
+    private String role = "ROLE_USER";
+
+}

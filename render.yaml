@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: linkengine-backend
+    env: docker
+    dockerfilePath: ./url-shortener-sb/Dockerfile
+    dockerContext: ./url-shortener-sb
+    plan: free
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true

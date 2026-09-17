@@ -1,0 +1,129 @@
+##############################
+# IntelliJ IDEA
+##############################
+
+.idea/
+*.iml
+out/
+
+##############################
+# VS Code
+##############################
+
+.vscode/
+
+##############################
+# Eclipse
+##############################
+
+.settings/
+.project
+.classpath
+
+##############################
+# NetBeans
+##############################
+
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+
+##############################
+# Maven
+##############################
+
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!.mvn/wrapper/maven-wrapper.properties
+
+##############################
+# Gradle
+##############################
+
+.gradle/
+
+##############################
+# Java
+##############################
+
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+
+##############################
+# Logs
+##############################
+
+logs/
+*.log
+
+##############################
+# OS Files
+##############################
+
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+##############################
+# Environment Variables & Secrets
+##############################
+
+.env
+.env.*
+!.env.example
+
+# Spring Boot application secrets — use application.properties.example as template
+url-shortener-sb/src/main/resources/application.properties
+application-local.yml
+application-local.properties
+application-prod.yml
+application-prod.properties
+
+##############################
+# React / Vite
+##############################
+
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.vite/
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+##############################
+# npm / yarn / pnpm
+##############################
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+##############################
+# Coverage
+##############################
+
+coverage/
+
+##############################
+# Temporary
+##############################
+
+*.tmp
+*.swp
+*.swo
+
+##############################
+# Mac / Linux
+##############################
+
+.Trashes
+.AppleDouble
+.LSOverride

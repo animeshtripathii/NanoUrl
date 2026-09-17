@@ -1,0 +1,22 @@
+# ============================================================
+# LinkEngine — Spring Boot Configuration Template
+# Copy this file to application.properties and fill in values
+# NEVER commit application.properties (it is gitignored)
+# ============================================================
+
+spring.application.name=url-shortener-sb
+
+# ── Database ────────────────────────────────────────────────
+spring.datasource.url=jdbc:mysql://localhost:3306/linkengine
+spring.datasource.username=YOUR_DB_USERNAME
+spring.datasource.password=YOUR_DB_PASSWORD
+
+# ── JPA ─────────────────────────────────────────────────────
+spring.jpa.hibernate.ddl-auto=update
+#spring.jpa.show-sql=true
+
+# ── JWT ─────────────────────────────────────────────────────
+# Generate a secure Base64-encoded secret (min 256-bit / 32 bytes)
+# Example: openssl rand -base64 32
+jwt.secret=YOUR_BASE64_JWT_SECRET_HERE
+jwt.expiration=172800000

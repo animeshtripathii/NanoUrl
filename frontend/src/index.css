@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0B0B0B;
+    color: #f7ddd5;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Style Guidance Custom Utilities */
+.btn-primary {
+  background-color: #FF6B2C;
+  color: #FFFFFF;
+  transition: background-color 200ms, opacity 200ms;
+}
+.btn-primary:hover {
+  background-color: #e55a20;
+}
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: #151515;
+  border: 1px solid #292929;
+  color: #f7ddd5;
+  transition: background-color 200ms, border-color 200ms;
+}
+.btn-secondary:hover {
+  background-color: #1E1E1E;
+  border-color: #333333;
+}
+
+.input-tech {
+  background-color: #0B0B0B;
+  border: 1px solid #292929;
+  color: #f7ddd5;
+  font-family: 'JetBrains Mono', monospace;
+  transition: border-color 200ms;
+}
+.input-tech:focus {
+  outline: none;
+  border-color: #FF6B2C;
+  box-shadow: none;
+}
+
+.card-surface {
+  background-color: #151515;
+  border: 1px solid #292929;
+}
+
+.card-header-divider {
+  border-bottom: 1px solid #292929;
+}
+
+.bg-level-1 {
+  background-color: #151515;
+  border: 1px solid #292929;
+}
+
+.bg-level-2 {
+  background-color: #1E1E1E;
+  border: 1px solid #333333;
+}
+
+.surface-card {
+  background-color: #151515;
+  border: 1px solid #292929;
+}
+
+.surface-input {
+  background-color: #0B0B0B;
+  border: 1px solid #292929;
+}
+.surface-input:focus-within {
+  border-color: #FF6B2C;
+}
+
+.data-table-row {
+  border-bottom: 1px solid #292929;
+}
+.data-table-row:last-child {
+  border-bottom: none;
+}
+
+.chip-active {
+  background-color: rgba(255, 107, 44, 0.1);
+  border: 1px solid rgba(255, 107, 44, 0.5);
+  color: #FF6B2C;
+}
+
+/* Input Fields generic */
+.input-field {
+  background-color: #0B0B0B;
+  border: 1px solid #292929;
+  color: #f7ddd5;
+  transition: border-color 200ms;
+}
+.input-field:focus {
+  border-color: #FF6B2C;
+  outline: none;
+  box-shadow: none;
+}
+
+.input-surface {
+  background-color: #0B0B0B;
+  border: 1px solid #292929;
+  color: #f7ddd5;
+  transition: border-color 200ms;
+}
+.input-surface:focus {
+  border-color: #FF6B2C;
+  outline: none;
+}

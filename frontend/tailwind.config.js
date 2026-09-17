@@ -1,0 +1,123 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: "class",
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        "inverse-primary": "#a83900",
+        "outline": "#a98a7f",
+        "surface-bright": "#463630",
+        "tertiary-fixed-dim": "#6cd2ff",
+        "surface-dim": "#1d100c",
+        "on-surface": "#f7ddd5",
+        "primary-fixed": "#ffdbcf",
+        "tertiary-container": "#00a6d6",
+        "surface-container": "#2a1c17",
+        "on-secondary-fixed-variant": "#474746",
+        "on-primary-container": "#5c1c00",
+        "on-tertiary-fixed": "#001f2a",
+        "secondary-container": "#474746",
+        "on-secondary": "#303030",
+        "secondary-fixed": "#e5e2e1",
+        "on-primary-fixed-variant": "#802900",
+        "secondary": "#c8c6c5",
+        "surface-container-high": "#352721",
+        "on-tertiary": "#003547",
+        "outline-variant": "#594139",
+        "surface": "#1d100c",
+        "surface-tint": "#ffb59a",
+        "on-tertiary-fixed-variant": "#004d65",
+        "secondary-fixed-dim": "#c8c6c5",
+        "surface-variant": "#41312c",
+        "primary": "#ffb59a",
+        "inverse-surface": "#f7ddd5",
+        "on-error": "#690005",
+        "on-secondary-container": "#b7b5b4",
+        "background": "#1d100c",
+        "error": "#ffb4ab",
+        "on-secondary-fixed": "#1b1b1c",
+        "surface-container-lowest": "#170b07",
+        "surface-container-highest": "#41312c",
+        "surface-container-low": "#261813",
+        "primary-container": "#ff6b2c",
+        "error-container": "#93000a",
+        "on-background": "#f7ddd5",
+        "on-tertiary-container": "#003648",
+        "on-surface-variant": "#e2bfb3",
+        "on-primary": "#5b1b00",
+        "on-primary-fixed": "#380d00",
+        "inverse-on-surface": "#3c2d27",
+        "on-error-container": "#ffdad6",
+        "tertiary-fixed": "#bfe9ff",
+        "primary-fixed-dim": "#ffb59a",
+        "tertiary": "#6cd2ff",
+        
+        // Custom additions for strict style guidance mapping
+        "bg-base": "#0B0B0B",
+        "surface-level-1": "#151515",
+        "surface-level-2": "#1E1E1E",
+        "border-subtle": "#292929",
+        "border-hover": "#333333",
+        "accent-primary": "#FF6B2C",
+
+        // Login Page specific
+        "custom-bg": "#0B0B0B",
+        "custom-surface": "#151515",
+        "custom-border": "#292929",
+        "custom-primary": "#FF6B2C"
+      },
+      borderRadius: {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      spacing: {
+        "unit": "4px",
+        "lg": "24px",
+        "md": "16px",
+        "margin-mobile": "16px",
+        "gutter": "24px",
+        "sm": "8px",
+        "xl": "40px",
+        "xs": "4px",
+        "2xl": "64px",
+        "container-max": "1440px"
+      },
+      fontFamily: {
+        "label-caps": ["Hanken Grotesk"],
+        "headline-md": ["Space Grotesk"],
+        "code-sm": ["JetBrains Mono"],
+        "headline-sm": ["Space Grotesk"],
+        "display-lg-mobile": ["Space Grotesk"],
+        "body-sm": ["Hanken Grotesk"],
+        "body-lg": ["Hanken Grotesk"],
+        "body-md": ["Hanken Grotesk"],
+        "display-lg": ["Space Grotesk"],
+        "code-md": ["JetBrains Mono"]
+      },
+      fontSize: {
+        "label-caps": ["12px", { lineHeight: "16px", letterSpacing: "0.05em", fontWeight: "700" }],
+        "headline-md": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+        "code-sm": ["12px", { lineHeight: "16px", fontWeight: "400" }],
+        "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }],
+        "display-lg-mobile": ["32px", { lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "body-sm": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+        "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+        "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+        "display-lg": ["48px", { lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "code-md": ["14px", { lineHeight: "20px", fontWeight: "400" }]
+      },
+      backgroundImage: {
+        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm39 39V1H1v38h38z' fill='%23292929' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+      }
+    },
+  },
+  plugins: [
+    require("@tailwindcss/forms"),
+  ],
+}
