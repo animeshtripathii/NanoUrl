@@ -22,6 +22,8 @@ import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
 
+import org.springframework.web.cors.CorsConfigurationSource;
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -30,10 +32,8 @@ public class WebSecurityConfig {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
-    @Bean
-    public JwtAuthentictonFilter jwtAuthentictonFilter() {
-        return new JwtAuthentictonFilter();
-    }
+    @Autowired
+    private JwtAuthentictonFilter jwtAuthentictonFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -55,7 +55,7 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public CorsFilter corsFilter() {
+    public CorsConfigurationSource corsConfigurationSource() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOriginPatterns(Arrays.asList("*"));
@@ -65,12 +65,13 @@ public class WebSecurityConfig {
         configuration.setAllowCredentials(true);
         configuration.setMaxAge(3600L);
         source.registerCorsConfiguration("/**", configuration);
-        return new CorsFilter(source);
+        return source;
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
@@ -82,7 +83,7 @@ public class WebSecurityConfig {
                 .authenticationProvider(authenticationProvider());
 
         http.addFilterBefore(
-                jwtAuthentictonFilter(),
+                jwtAuthentictonFilter,
                 UsernamePasswordAuthenticationFilter.class
         );
 
