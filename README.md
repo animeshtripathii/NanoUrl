@@ -140,6 +140,3 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
-<div align="center">
-  <sub>Built with ❤️ by <strong>Harmeet Singh</strong></sub>
-</div>
